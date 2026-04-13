@@ -19,6 +19,7 @@ def input(event):
             sb.date = datetime.strptime(time_input, "%m-%d-%Y %H:%M")
         sb.timestamp_gen()
         inc += 1
+        web.page["response"].innerText = f"{time_input} has been added to the schedule message"
     elif inc == 6:
         time_input = web.page["time-input"].value
         title_input = web.page["title-input"].value
@@ -30,6 +31,7 @@ def input(event):
         sb.timestamp_gen()
         button = web.page["continue"]
         button.innerText = "Print Final Schedule"
+        web.page["response"].innerText = f"{time_input} has been added to the schedule message"
         inc = 7
     else:
         output = web.page["output"]
