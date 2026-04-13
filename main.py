@@ -1,38 +1,31 @@
 from schedule import ScheduleBuilder
 from pyscript import web, when
-from datetime import datetime
+from datetime import datetime, timedelta
 
 sb = ScheduleBuilder()
 
-inc = 0
+inc = 1
+
+start_date = None
 
 @when("click", "#continue")
 def input(event):
     global inc
-    if inc < 6:
-        time_input = web.page["time-input"].value
-        title_input = web.page["title-input"].value
-        sb.title = title_input
-        if title_input == "Offline":
-            sb.date = datetime.strptime(time_input, "%m-%d-%Y")
-        else:
-            sb.date = datetime.strptime(time_input, "%m-%d-%Y %H:%M")
+    sb.date = start_date
+    while inc <= 7:
+        sb.title = web.page[f"title{inc}"].value
+        if sb.title != "Offline":
+            web_time = datetime.strptime(web.page[f"time{inc}"].value, "%H:%M").time()
+            sb.date = datetime.combine(sb.date.date(), web_time)
         sb.timestamp_gen()
+        sb.date += timedelta(days=1)
         inc += 1
-        web.page["response"].innerText = f"{time_input} has been added to the schedule message"
-    elif inc == 6:
-        time_input = web.page["time-input"].value
-        title_input = web.page["title-input"].value
-        sb.title = title_input
-        if title_input == "Offline":
-            sb.date = datetime.strptime(time_input, "%m-%d-%Y")
-        else:
-            sb.date = datetime.strptime(time_input, "%m-%d-%Y %H:%M")
-        sb.timestamp_gen()
-        button = web.page["continue"]
-        button.innerText = "Print Final Schedule"
-        web.page["response"].innerText = f"{time_input} has been added to the schedule message"
-        inc = 7
-    else:
-        output = web.page["output"]
-        output.innerText = sb.week_schedule
+    inc = 1
+    web.page["output"].innerText = sb.week_schedule
+    sb.week_schedule = "Output: \n"
+
+@when("click", "#submit")
+def submit_date(event):
+    global start_date
+    start_date = datetime.strptime(web.page["week"].value, "%Y-%m-%d")
+    web.page["feedback"].innerText = f"{start_date} has been set as starting date"

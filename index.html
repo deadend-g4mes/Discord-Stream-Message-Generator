@@ -19,14 +19,54 @@
 
         <h1>Stream Schedule Discord Message Builder</h1>
 
-        <h2>Start with the Monday of the week you're building the Schedule For ex: 4-13-2026 3:00. Be sure to use military time and dashes instead of slashes for the date.</h2>
+        <h2>Select the monday of the week you're planning your schedule for. If not streaming on a certian day, type 'Offline'.</h2>
 
-        <div id="response"> </div>
-        
-        <input type="text" id="title-input" placeholder="Stream Title Here (Offline if no stream)" />
-        <input type="text" id="time-input" placeholder="ex: 4-12-2026 5:00 / 4-12-2026 17:00" />
-        
-        <button id="continue">Continue</button>
+        <div id="feedback"></div>
+
+        <div>
+            <label>Week:</label>
+            <input type="date" id="week">
+            <button id="submit">Submit</button>
+        </div>
+
+        <div>
+            <label>Monday:</label>
+            <input type="text" id="title1">
+            <input type="time" id="time1">
+        </div>
+        <div>
+            <label>Tuesday:</label>
+            <input type="text" id="title2">
+            <input type="time" id="time2">
+        </div>
+        <div>
+            <label>Wednesday:</label>
+            <input type="text" id="title3">
+            <input type="time" id="time3">
+        </div>
+        <div>
+            <label>Thursday:</label>
+            <input type="text" id="title4">
+            <input type="time" id="time4">
+        </div>
+        <div>
+            <label>Friday:</label>
+            <input type="text" id="title5">
+            <input type="time" id="time5">
+        </div>
+        <div>
+            <label>Saturday:</label>
+            <input type="text" id="title6">
+            <input type="time" id="time6">
+        </div>
+        <div>
+            <label>Sunday:</label>
+            <input type="text" id="title7">
+            <input type="time" id="time7">
+        </div>
+
+
+        <button id="continue">Print Schedule</button>
             
         <div id="output"></div>
         

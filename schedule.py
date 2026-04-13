@@ -4,9 +4,9 @@ from time import sleep
 class ScheduleBuilder:
 
     def __init__(self):
-        self.week_schedule = ""
+        self.week_schedule = "Output: \n"
         self.date = ""
-        self.title = "Output: \n"
+        self.title = ""
 
     def timestamp_gen(self):
         """
